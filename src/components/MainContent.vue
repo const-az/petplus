@@ -13,7 +13,7 @@ import ProductCards from './ProductCards'
 export default {
   components: {
     BreadCrumbs,
-    ProductCards
+    ProductCards,
   }
 }
 </script>

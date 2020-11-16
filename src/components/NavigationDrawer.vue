@@ -6,8 +6,8 @@
     <v-navigation-drawer permanent app>
       <v-list-item class="my-3">
         <v-list-item-content>
-          <v-list-item-title class="title font-weight-black">
-            PETPLUS
+          <v-list-item-title class="title font-weight-black primary--text">
+            PETPLUS <v-icon class="mb-1" color="primary">mdi-plus-circle</v-icon>
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
@@ -41,16 +41,14 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
   methods: {
-    ...mapActions(['getCategories'])
+    ...mapActions(["getCategories", "getItems", "NoFood"]),
   },
-  computed: {
-    ...mapState(['categories'])
-  },
+  computed: mapState(["categories"]),
   created() {
-    this.getCategories()
+    this.getCategories();
   },
-}
+};
 </script>

@@ -12,7 +12,7 @@
         <v-container>
           <v-row>
             <v-col cols="6">
-              <v-img :src="currentItem.attributes[0].icon" height="200px"></v-img>
+              <v-img :src="currentItem.attributes[0].icon" contain height="200px"></v-img>
             </v-col>
             <v-col cols="6">
               <p class="text-body-1 font-weight-bold">{{currentItem.name}}</p>
@@ -38,8 +38,8 @@
         </v-container>
       </v-card-text>
       <v-card-actions>
-        <v-btn depressed outlined class="mx-auto" @click="closeModal">Seguir comprando</v-btn>
-        <v-btn depressed dark class="mx-auto" @click="addProductToCart">Agregar al carro</v-btn>
+        <v-btn depressed outlined color="primary" class="mx-auto" @click="closeModal">Seguir comprando</v-btn>
+        <v-btn depressed dark color="primary" class="mx-auto" @click="addProductToCart">Agregar al carro</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

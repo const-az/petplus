@@ -12,7 +12,7 @@
       <div width="300px">
         <v-text-field outlined dense class="pt-5" prepend-inner-icon="mdi-magnify" :value="search" @input="updateSearch"></v-text-field>
       </div>
-
+      
       <cart-menu></cart-menu>
     </v-app-bar>
   </div>

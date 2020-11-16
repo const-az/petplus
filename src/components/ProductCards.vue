@@ -3,9 +3,9 @@
     <v-row v-if="itemList.length > 0">
       <v-col cols="3" v-for="i in itemList" :key="i.id">
         <v-card class="mx-auto" flat>
-          <v-img :src="i.attributes[0].icon" height="300px">
-            <v-chip class="ma-2"
-                :color=" i.stock>0 ? 'cyan' : 'red'"
+          <v-img :src="i.attributes[0].icon" height="200" class="align-end">
+            <v-chip
+                :color=" i.stock>0 ? 'primary' : 'red'"
                 label
                 text-color="white"
               >
@@ -33,6 +33,7 @@
           </v-card-actions>
         </v-card>
       </v-col>
+      <Pagination/>
     </v-row>
     <div v-else class="my-10">
       <p class="text-center text-h6">Producto no encontrado</p>
@@ -43,11 +44,14 @@
 
 <script>
 import ProductModal from './ProductModal'
+import Pagination from './Pagination'
+
 import { mapState, mapActions } from "vuex";
 
 export default {
   components: {
-    ProductModal
+    ProductModal,
+    Pagination
   },
   data(){
     return{

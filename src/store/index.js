@@ -12,7 +12,7 @@ export default new Vuex.Store({
       items: [],
       total: 0
     },
-    search: ''
+    search: '',
   },
   mutations: {
     GET_CATEGORIES(state, cat){
@@ -52,6 +52,4 @@ export default new Vuex.Store({
     addToCart({commit}, item){ commit('ADD_TO_CART', item) },
     updateSearch({commit}, search){ commit('UPDATE_SEARCH', search) },
   },
-  modules: {
-  }
 })

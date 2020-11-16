@@ -2,9 +2,9 @@
   <div>
     <v-menu :close-on-content-click="false">
         <template v-slot:activator="{ on, attrs }">
-          <v-badge :content="cart.items.length" :value="cart.items.length" color="deep-purple accent-4" overlap>
+          <v-badge :content="cart.items.length" :value="cart.items.length" color="primary" overlap>
             <v-btn fab depressed class="ml-5" color="transparent" v-bind="attrs" v-on="on">
-              <v-icon large color="deep-purple accent-4">mdi-shopping</v-icon>
+              <v-icon large color="primary">mdi-shopping</v-icon>
             </v-btn>
           </v-badge>
         </template>
@@ -41,7 +41,7 @@
             </v-list-item-content>
           </v-list-item>
           <v-list-item class="text-right">
-            <v-list-item-title class="text-body-2 deep-purple--text text--accent-4">Subtotal: <span class="font-weight-bold">$ {{cart.total}}</span></v-list-item-title>
+            <v-list-item-title class="text-body-1 primary--text">Subtotal: <span class="font-weight-bold">$ {{cart.total}}</span></v-list-item-title>
           </v-list-item>
         </v-list>
         <v-list v-else>
@@ -56,23 +56,23 @@ import { mapState } from "vuex";
 
 export default {
   computed: {
-    ...mapState(["cart","items"]),
+    ...mapState(["cart", "items"]),
   },
   methods: {
     incrQty(id) {
-      let idx = this.cart.items.map(p => p.id).indexOf(id)
-      if(this.cart.items[idx].qty < this.items[idx].stock) {
-        this.cart.items[idx].qty++
-        this.cart.total += this.cart.items[idx].price
+      let idx = this.cart.items.map((p) => p.id).indexOf(id);
+      if (this.cart.items[idx].qty < this.items[idx].stock) {
+        this.cart.items[idx].qty++;
+        this.cart.total += this.cart.items[idx].price;
       }
     },
     decrQty(id) {
-      let idx = this.cart.items.map(p => p.id).indexOf(id)
-      if(this.cart.items[idx].qty > 1) {
-        this.cart.items[idx].qty--
-        this.cart.total -= this.cart.items[idx].price
+      let idx = this.cart.items.map((p) => p.id).indexOf(id);
+      if (this.cart.items[idx].qty > 1) {
+        this.cart.items[idx].qty--;
+        this.cart.total -= this.cart.items[idx].price;
       }
     },
-  }
+  },
 };
 </script>

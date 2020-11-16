@@ -34,15 +34,26 @@
         </v-card>
       </v-col>
     </v-row>
+    <product-modal v-if="showModal" @close-modal="closeModal" :currentItem="currentItem" :showModal="showModal"></product-modal>
   </div>
 </template>
 
 <script>
+import ProductModal from './ProductModal'
 import { mapState, mapActions } from "vuex";
 
 export default {
+  components: {
+    ProductModal
+  },
+  data(){
+    return{
+      showModal: false,
+      currentItem: Object
+    }
+  },
   methods: {
-    ...mapActions(["getItems","addToCart"]),
+    ...mapActions(["getItems"]),
     incrQty(id) {
       let idx = this.items.map(p => p.id).indexOf(id)
       if(this.items[idx].qty < this.items[idx].stock) {
@@ -56,8 +67,16 @@ export default {
       }
     },
     addProduct(item){
-      this.addToCart(item)
-    }
+      this.openItem(item)
+    },
+    openItem(item) {
+      this.currentItem = item
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+      this.currentItem = Object
+    },
   },
   computed: {
     ...mapState(["items"]),

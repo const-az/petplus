@@ -6,8 +6,8 @@
     <v-navigation-drawer permanent app>
       <v-list-item class="my-3">
         <v-list-item-content>
-          <v-list-item-title class="title">
-            LOGO
+          <v-list-item-title class="title font-weight-black">
+            PETPLUS
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>

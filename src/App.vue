@@ -1,32 +1,37 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <app-bar/>
+    <navigation-drawer/>
+    <v-main>
+      <main-content/>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { mapActions } from 'vuex'
 
-#nav {
-  padding: 30px;
-}
+import AppBar from './components/AppBar'
+import NavigationDrawer from './components/NavigationDrawer'
+import MainContent from './components/MainContent'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default {
+  name: 'App',
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  components: {
+    AppBar,
+    NavigationDrawer,
+    MainContent
+  },
+
+  data: () => ({
+    //
+  }),
+  methods: {
+    ...mapActions(['getItems'])
+  },
+  created(){
+    this.getItems()
+  }
+};
+</script>

@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-
 import AppBar from './components/AppBar'
 import NavigationDrawer from './components/NavigationDrawer'
 import MainContent from './components/MainContent'
@@ -23,15 +21,5 @@ export default {
     NavigationDrawer,
     MainContent
   },
-
-  data: () => ({
-    //
-  }),
-  methods: {
-    ...mapActions(['getItems'])
-  },
-  created(){
-    this.getItems()
-  }
 };
 </script>

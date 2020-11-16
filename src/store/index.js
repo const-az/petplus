@@ -6,18 +6,39 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    categories: []
+    items: [],
+    categories: [],
+    cart: {
+      items: [],
+      total: 0
+    }
   },
   mutations: {
     GET_CATEGORIES(state, cat){
       state.categories = cat
+    },
+    GET_ITEMS(state, it){
+      state.items = []
+      it.forEach( prod => {
+        prod['qty'] = 1
+        state.items.push(prod)
+      })
+    },
+    ADD_TO_CART(state, item){
+      let target = state.cart.items.find(p => p.name == item.name)
+      if(target){
+        target.qty += 1
+      } else{
+        state.cart.items.push(item)
+      }
+      state.cart.total += item.price * item.qty
     }
   },
   actions: {
-    getItems(){
+    getItems({commit}){
       axios.get('http://sva.talana.com:8000/api/product/')
         .then((accept) => {
-          console.log(accept.data)
+          commit('GET_ITEMS', accept.data)
         })
     },
     getCategories({commit}){
@@ -25,7 +46,8 @@ export default new Vuex.Store({
       .then((accept) => {
         commit('GET_CATEGORIES', accept.data)
       })
-    }
+    },
+    addToCart({commit}, item){ commit('ADD_TO_CART', item) },
   },
   modules: {
   }

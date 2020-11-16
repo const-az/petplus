@@ -11,7 +11,8 @@ export default new Vuex.Store({
     cart: {
       items: [],
       total: 0
-    }
+    },
+    search: ''
   },
   mutations: {
     GET_CATEGORIES(state, cat){
@@ -32,7 +33,8 @@ export default new Vuex.Store({
         state.cart.items.push(item)
       }
       state.cart.total += item.price * item.qty
-    }
+    },
+    UPDATE_SEARCH(state, search){ state.search = search },
   },
   actions: {
     getItems({commit}){
@@ -48,6 +50,7 @@ export default new Vuex.Store({
       })
     },
     addToCart({commit}, item){ commit('ADD_TO_CART', item) },
+    updateSearch({commit}, search){ commit('UPDATE_SEARCH', search) },
   },
   modules: {
   }

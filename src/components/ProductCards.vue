@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-row>
-      <v-col cols="3" v-for="i in items" :key="i.id">
+    <v-row v-if="itemList.length > 0">
+      <v-col cols="3" v-for="i in itemList" :key="i.id">
         <v-card class="mx-auto" flat>
           <v-img :src="i.attributes[0].icon" height="300px">
             <v-chip class="ma-2"
@@ -34,6 +34,9 @@
         </v-card>
       </v-col>
     </v-row>
+    <div v-else class="my-10">
+      <p class="text-center text-h6">Producto no encontrado</p>
+    </div>
     <product-modal v-if="showModal" @close-modal="closeModal" :currentItem="currentItem" :showModal="showModal"></product-modal>
   </div>
 </template>
@@ -79,7 +82,12 @@ export default {
     },
   },
   computed: {
-    ...mapState(["items"]),
+    ...mapState(["items", "search"]),
+    itemList(){
+      return this.items.filter(p => {
+        return p.name.toLowerCase().includes(this.search.toLowerCase())
+      })
+    },
   },
   created() {
     this.getItems();

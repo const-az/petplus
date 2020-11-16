@@ -10,8 +10,7 @@
       <v-spacer></v-spacer>
 
       <div width="300px">
-        <v-text-field outlined dense class="pt-5" prepend-inner-icon="mdi-magnify"></v-text-field>
-        <!-- :value="search" @input="updateSearch" @click:append="clearSearch" :append-icon="search!='' ? 'mdi-close' : ''" -->
+        <v-text-field outlined dense class="pt-5" prepend-inner-icon="mdi-magnify" :value="search" @input="updateSearch"></v-text-field>
       </div>
 
       <cart-menu></cart-menu>
@@ -20,11 +19,14 @@
 </template>
 
 <script>
+import {mapActions, mapState} from 'vuex'
 import CartMenu from './CartMenu'
 
 export default {
   components: {
     CartMenu
-  }
+  },
+  methods: mapActions(['updateSearch']),
+  computed: mapState(['search'])
 };
 </script>
